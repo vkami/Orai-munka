@@ -12,7 +12,7 @@ public class ReadAndWrite {
         List<Costumer> costumers=new ArrayList<>();
         String head="";
 
-        File file=new File("src\\vkami\\costumers\\ugyfelek.csv");
+        File file=new File("src/vkami/costumers/ugyfelek.csv");
 
         try {
             BufferedReader reader = new BufferedReader(new FileReader(file));
@@ -34,23 +34,24 @@ public class ReadAndWrite {
 
         } catch (Exception e) {
             System.out.println( "Fájl nem található..." );
+            e.printStackTrace();
         }
 
 
-        Collections.sort(costumers, new OrederByAccStart() );
+        Collections.sort(costumers, new OrederByAccStart<Costumer>() );
         writeFile("szamlanyitas.csv", costumers, head);
 
-        Collections.sort(costumers, new OrederByName() );
+        Collections.sort(costumers, new OrederByName<Costumer>() );
         writeFile("nevek.csv", costumers, head);
 
-        Collections.sort(costumers, new OrederByMoney() );
+        Collections.sort(costumers, new OrederByMoney<Costumer>() );
         writeFile("penzosszegek.csv", costumers, head);
 
     }
 
     private static void writeFile(String filename, List costumers, String head) {
 
-        File file=new File("src\\vkami\\costumers\\" + filename);
+        File file=new File("src/vkami/costumers/" + filename);
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(file));
 
@@ -64,6 +65,7 @@ public class ReadAndWrite {
 
         } catch (Exception e) {
             System.out.println("Hiba történt...");
+            e.printStackTrace();
         }
     }
 }

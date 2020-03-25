@@ -59,13 +59,13 @@ public class Costumer {
     }
 }
 
-class OrederByName implements Comparator {
+class OrederByName<T extends Costumer> implements Comparator {
 
     @Override
     public int compare(Object o1, Object o2) {
 
-        Costumer c1=(Costumer)o1;
-        Costumer c2=(Costumer)o2;
+        T c1=(T)o1;
+        T c2=(T)o2;
 
         String s1=c1.getName() + c1.getMotherName();
         String s2=c2.getName() + c2.getMotherName();
@@ -86,13 +86,13 @@ class OrederByName implements Comparator {
     }
 }
 
-class OrederByAccStart implements Comparator {
+class OrederByAccStart<T extends Costumer> implements Comparator {
 
     @Override
     public int compare(Object o1, Object o2) {
 
-        Costumer c1=(Costumer)o1;
-        Costumer c2=(Costumer)o2;
+        T c1=(T)o1;
+        T c2=(T)o2;
 
         String d1=c1.getAccStart();
         String d2=c2.getAccStart();
@@ -113,13 +113,13 @@ class OrederByAccStart implements Comparator {
     }
 }
 
-class OrederByMoney implements Comparator {
+class OrederByMoney<T extends Costumer> implements Comparator {
 
     @Override
     public int compare(Object o1, Object o2) {
 
-        Costumer c1=(Costumer)o1;
-        Costumer c2=(Costumer)o2;
+        T c1=(T)o1;
+        T c2=(T)o2;
 
         int n1=c1.getBalance() + c1.getDeposit();
         int n2=c2.getBalance() + c2.getDeposit();
