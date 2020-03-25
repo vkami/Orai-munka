@@ -1,7 +1,10 @@
 /.idea
 /out
 *.iml
-/src/sample
+src/sample/*
+src/vkami/costumers/nevek.csv
+src/vkami/costumers/penzosszegek.csv
+src/vkami/costumers/szamlanyitas.csv
 
 # Created by .ignore support plugin (hsz.mobi)
 ### Java template
