@@ -3,6 +3,7 @@ package vkami.countryinfo;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -26,32 +27,18 @@ public class CountryInfo extends Application {
     private ImageView center;
     private Label label1;
     private Label label2;
-
+    private GatherInformation dataBase;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
 
-        GatherInformation dataBase=new GatherInformation(countryPath + "res/countries.csv");
+        dataBase=new GatherInformation(countryPath + "res/countries.csv");
         ArrayList<String> countryNames=dataBase.getCountryNames();
 
         //COMBOBOX
         comboB=new ComboBox(FXCollections.observableArrayList(countryNames));
-        comboB.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-
-                for (Country act:dataBase.getOrszagok()) {
-
-                    if ( act.getCountry().equals(comboB.getValue()) ) {
-
-                        setCenter(countryPath + "res/" + act.getImage());
-
-                        label1.setText(act.getCapital());
-                        label2.setText(act.getPopulation());
-                    }
-                }
-            }
-        });
+        comboB.getSelectionModel().select(0);
+        comboB.setOnAction(new Refresh());
 
 
         HBox top=new HBox(comboB);
@@ -67,6 +54,7 @@ public class CountryInfo extends Application {
         HBox bottom=new HBox(15,label1, label2);
         bottom.setAlignment(Pos.CENTER);
 
+        new Refresh().refresh();
 
         bp=new BorderPane();
         bp.setTop(top);
@@ -117,6 +105,29 @@ public class CountryInfo extends Application {
 
     public static void main(String[] args) {
         launch(args);
+    }
+
+
+    class Refresh implements EventHandler {
+
+        @Override
+        public void handle(Event event) {
+            refresh();
+        }
+
+        public void refresh() {
+            for (Country act:dataBase.getOrszagok()) {
+
+                if ( act.getCountry().equals(comboB.getValue()) ) {
+
+                    setCenter(countryPath + "res/" + act.getImage());
+
+                    label1.setText(act.getCapital());
+                    label2.setText(act.getPopulation());
+                }
+            }
+        }
+
     }
 }
 
