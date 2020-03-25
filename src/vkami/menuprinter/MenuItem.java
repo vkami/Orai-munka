@@ -22,22 +22,22 @@ public class MenuItem {
         char letter='a';
 
         for(MenuItem act:subs)
-            act.write(1, letter++);
+            act.write("\t", letter++);
     }
 
+    public void write(String tabs, char letter){
 
-    public void write(int szint, char letter){
-
-        if ( szint==1 ) {
-            System.out.println( letter + "./ " + name);
-        } else if ( szint>1 ) {
-            System.out.println( "* " + name);
+        if ( tabs.length()==1 ) {
+            System.out.println( tabs + letter + "./ " + name);
+        } else if ( tabs.length()>1 ) {
+            System.out.println( tabs + "* " + name);
         }
 
-        szint++;
+        tabs+="\t";
         for(MenuItem act:subs)
-            act.write(szint, letter);
-
+            act.write(tabs, letter);
     }
+
+
 
 }
