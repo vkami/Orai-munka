@@ -13,7 +13,8 @@ public class MenuItem {
 
     public MenuItem(String name, MenuItem ... subs){
         this.name=name;
-        for (MenuItem act:subs) this.subs.add(act);
+        for (MenuItem act:subs)
+            this.subs.add(act);
     }
 
     public void write(){
